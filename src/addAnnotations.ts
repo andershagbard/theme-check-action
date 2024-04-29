@@ -123,13 +123,13 @@ export async function addAnnotations(
   );
 
   // Create check
-  const check = await octokit.rest.checks.create({
+  /*const check = await octokit.rest.checks.create({
     owner: ctx.repo.owner,
     repo: ctx.repo.repo,
     name: CHECK_NAME,
     head_sha: ctx.sha,
     status: 'in_progress',
-  });
+  });*/
 
   const allAnnotations: GitHubAnnotation[] = result
     .flatMap((report: ThemeCheckReport) =>
@@ -183,7 +183,7 @@ export async function addAnnotations(
       console.log({
         owner: ctx.repo.owner,
         repo: ctx.repo.repo,
-        check_run_id: check.data.id,
+        // check_run_id: check.data.id,
         output: {
           title: CHECK_NAME,
           summary: `${errorCount} error(s), ${warningCount} warning(s) found`,
@@ -197,7 +197,7 @@ export async function addAnnotations(
   console.log({
     owner: ctx.repo.owner,
     repo: ctx.repo.repo,
-    check_run_id: check.data.id,
+    // check_run_id: check.data.id,
     name: CHECK_NAME,
     status: 'completed',
     conclusion: exitCode > 0 ? 'failure' : 'success',
