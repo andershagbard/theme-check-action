@@ -180,7 +180,7 @@ export async function addAnnotations(
   // Push annotations
   await Promise.all(
     annotationsChunks.map(async (annotations) =>
-      octokit.rest.checks.update({
+      console.log({
         owner: ctx.repo.owner,
         repo: ctx.repo.repo,
         check_run_id: check.data.id,
@@ -194,7 +194,7 @@ export async function addAnnotations(
   );
 
   // Add final report
-  await octokit.rest.checks.update({
+  console.log({
     owner: ctx.repo.owner,
     repo: ctx.repo.repo,
     check_run_id: check.data.id,
